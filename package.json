@@ -1,6 +1,6 @@
 {
   "name": "mdstatic",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "",
   "main": "cli.js",
   "bin": {
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^2.19.0",
+    "express": "^4.16.4",
     "meta-marked": "^0.4.2",
     "rimraf": "^2.6.3"
   }

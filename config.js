@@ -6,7 +6,10 @@ module.exports = {
         head_description: "",
         head_charset: "utf-8",
         build_target: "dist",
-        build_source: 'static'
+        build_source: 'static',
+        serve_source: 'dist',
+        serve_port: '8080',
+        serve_error_redirect: '404.html'
     },
     loadedConfig: {
     },
@@ -22,8 +25,8 @@ module.exports = {
     loadConfig(configPath) {
         try {
             this.loadedConfig = JSON.parse(fs.readFileSync(configPath, "utf-8"))
+            console.log("Loaded " + configPath)
         } catch(e) {
-            console.log("No config loaded...")
         }
     }
 }

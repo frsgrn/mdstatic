@@ -2,9 +2,9 @@
 const fs = require('fs')
 const path = require('path')
 const rimraf = require('rimraf')
+const express = require('express')
 
 const parser = require('./parser')
-
 const config = require('./config')
 
 var program = require('commander')
@@ -59,7 +59,24 @@ program.command('build')
 .option('-t, --target <target>', 'set build target')
 .option('-s, --source <source>', 'set build source')
 .action(function(cmd) {
+    console.log("Building...")
     build((cmd.source ? cmd.source : config.getValue('build_source')), (cmd.target ? cmd.target : config.getValue('build_target')))
+    console.log("Build completed")
+})
+
+program.command('serve')
+.description('serve static content')
+.option('-s --source <source>', 'source to serve from')
+.option('-p, --port <port>')
+.action(function(cmd) {
+    const port = (cmd.port ? cmd.port : config.getValue('serve_port'))
+    var app = express()
+    app.use(express.static((cmd.source ? cmd.source : config.getValue('serve_source'))))
+    app.use((req, res) => {
+        res.redirect(config.getValue('serve_error_redirect'))
+    })
+    app.listen(port)
+    console.log("Live on port: " + port)
 })
 
 program.parse(process.argv)
