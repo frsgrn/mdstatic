@@ -2,9 +2,11 @@ const fs = require('fs')
 
 module.exports = {
     defaultConfig: {
-        title: "MDSTATIC",
-        description: "",
-        charset: "utf-8"
+        head_title: "MDSTATIC",
+        head_description: "",
+        head_charset: "utf-8",
+        build_target: "dist",
+        build_source: 'static'
     },
     loadedConfig: {
     },

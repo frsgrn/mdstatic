@@ -12,6 +12,7 @@
   "author": "Victor Forsgren",
   "license": "ISC",
   "dependencies": {
+    "commander": "^2.19.0",
     "meta-marked": "^0.4.2",
     "rimraf": "^2.6.3"
   }

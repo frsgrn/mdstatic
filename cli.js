@@ -7,6 +7,8 @@ const parser = require('./parser')
 
 const config = require('./config')
 
+var program = require('commander')
+
 function crawl(dir, result) {
     if (result == null || result.constructor != Array) result = [];
     var files = fs.readdirSync(dir)
@@ -21,7 +23,8 @@ function crawl(dir, result) {
     }
 }
 
-function generate(source, dist) {
+function build(source, dist) {
+    if (!fs.existsSync(source)) return
     var files = []
     crawl(source, files)
     if (fs.existsSync(dist)) rimraf.sync(dist)
@@ -46,7 +49,17 @@ function generate(source, dist) {
 }
 
 config.loadConfig("./config.json")
-generate("./tset", "./dist")
-generate("./assets", "./dist/assets")
 
-// console.log(mdToHtml("# Hello"))
+program
+.version('1.0.3')
+.name("mdstatic")
+
+program.command('build')
+.description("build static assets")
+.option('-t, --target <target>', 'set build target')
+.option('-s, --source <source>', 'set build source')
+.action(function(cmd) {
+    build((cmd.source ? cmd.source : config.getValue('build_source')), (cmd.target ? cmd.target : config.getValue('build_target')))
+})
+
+program.parse(process.argv)
