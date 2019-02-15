@@ -2,14 +2,16 @@ const fs = require('fs')
 
 module.exports = {
     defaultConfig: {
-        head_title: "MDSTATIC",
-        head_description: "",
-        head_charset: "utf-8",
         build_target: "dist",
         build_source: 'static',
+        build_template_folder: 'templates',
         serve_source: 'dist',
         serve_port: '8080',
-        serve_error_redirect: '404.html'
+        serve_error_redirect: '404.html',
+        default_lang: 'en',
+        default_charset: 'utf-8',
+        default_title: 'mdstatic document',
+        default_favicon: 'favicon.ico'
     },
     loadedConfig: {
     },
