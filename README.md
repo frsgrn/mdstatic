@@ -1,4 +1,6 @@
 # mdstatic
+[quickstart](https://github.com/frsgrn/mdstatic-quickstart)
+
 mdstatic is a command-line interface made for converting markdown files to html files.
 ## where do i put my markdown files?
 The default directory that the cli will use when building the static files is ```static/``` (changeable in config.js).
