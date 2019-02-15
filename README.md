@@ -50,6 +50,7 @@ Tired of the default layout? Create your own.
 1. Create a folder named ```templates/```
 2. Create another folder with the name of your template ```templates/your_template```
 3. Create a file with your ```template name + .template``` inside your template folder ```templates/your_template/your_template.template```
+4. To use your own template inside of your markdown files add this to the meta-data section of the markdown file ```template: "~your_template"```
 ### layout of the default template file
 Variables that you want to be changeable by the meta-data inside the markdown-files are surrounded by ```{{variable_name}}```
 ```html
