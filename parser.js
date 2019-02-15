@@ -13,8 +13,8 @@ module.exports = {
             parser(fileContents) {
                 let md = metaMarked(fileContents)
                 let template = null
-                let data = null
-                if (md.meta && md.meta.template) {
+                let data = {}
+                if (md.meta) {
                     template = Template.loadTemplate((md.meta.template ? md.meta.template : 'default'))
                     data = md.meta
                 }
