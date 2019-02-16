@@ -9,6 +9,7 @@ module.exports = (source, dist) => {
     var files = []
     crawl(source, files)
     if (fs.existsSync(dist)) rimraf.sync(dist)
+    console.log(process.cwd())
     files.forEach(file => {
         const relPath = file.substring(file.indexOf("\\") + 1)
         const target = path.join(dist, relPath)
