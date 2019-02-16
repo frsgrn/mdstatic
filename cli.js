@@ -1,11 +1,8 @@
 #!/usr/bin/env node
 const express = require('express')
-const build = require('./build')
 const config = require('./config')
 
 var program = require('commander')
-
-config.loadConfig("config.json")
 
 program
 .version('1.0.3')
@@ -16,6 +13,8 @@ program.command('build')
 .option('-t, --target <target>', 'set build target')
 .option('-s, --source <source>', 'set build source')
 .action(function(cmd) {
+    config.loadConfig("config.json")
+    const build = require('./build')
     const buildSouce = (cmd.source ? cmd.source : config.getValue('build_source'))
     const buildTarget = (cmd.target ? cmd.target : config.getValue('build_target'))
     console.log("Building from " + buildSouce + " to " + buildTarget)
@@ -28,6 +27,8 @@ program.command('serve')
 .option('-s --source <source>', 'source to serve from')
 .option('-p, --port <port>')
 .action(function(cmd) {
+    config.loadConfig("config.json")
+    const build = require('./build')
     const port = (cmd.port ? cmd.port : config.getValue('serve_port'))
     var app = express()
     app.use(express.static((cmd.source ? cmd.source : config.getValue('serve_source'))))
