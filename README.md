@@ -3,11 +3,11 @@
 
 mdstatic is a command-line interface made for converting markdown files to html files.
 ## where do i put my markdown files?
-The default directory that the cli will use when building the static files is ```static/``` (changeable in config.js).
+The default directory that the cli will use when building the static files is ```src/``` (changeable in config.js).
 And the cli will output the results to ```dist/``` (changeable in config.js)
 
 Not only will the cli convert the markdown files to html files,
-it will also copy all other files and directories from the ```static/``` to the ```dist/``` folder. 
+it will also copy all other files and directories from the ```src/``` to the ```dist/``` folder. 
 Essentially just turning the markdown files to html files while keeping the already existing files intact.
 ## layout of a markdown file
 ```markdown
@@ -34,7 +34,7 @@ To create a configuration file create a file called ```config.js``` in your dire
 ```json
 {
   "build_target": "dist",
-  "build_source": "static",
+  "build_source": "src",
   "build_template_folder": "templates",
   "serve_source": "dist",
   "serve_port": "8080",
@@ -73,4 +73,4 @@ Variables that you want to be changeable by the meta-data inside the markdown-fi
 </html>
 ```
 ## known issues
-* Doesn't want to deploy to Netlify ```"ENOENT: no such file or directory, mkdir 'dist/static'"```
+* none

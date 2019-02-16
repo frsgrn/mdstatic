@@ -3,7 +3,7 @@ const fs = require('fs')
 module.exports = {
     defaultConfig: {
         build_target: "dist",
-        build_source: 'static',
+        build_source: 'src',
         build_template_folder: 'templates',
         serve_source: 'dist',
         serve_port: '8080',
