@@ -72,3 +72,5 @@ Variables that you want to be changeable by the meta-data inside the markdown-fi
     </body>
 </html>
 ```
+## known issues
+* Doesn't want to deploy to Netlify ```"ENOENT: no such file or directory, mkdir 'dist/static'"```
