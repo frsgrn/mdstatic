@@ -10,9 +10,9 @@ module.exports = (source, dist) => {
     crawl(source, files)
     if (fs.existsSync(dist)) rimraf.sync(dist)
     files.forEach(file => {
-        const relPath = file.substring(file.indexOf("\\") + 1)
+        const relPath = file.substring(file.indexOf(path.sep) + 1)
         const target = path.join(dist, relPath)
-        const targetDirectory = target.substring(0, target.lastIndexOf("\\"))
+        const targetDirectory = target.substring(0, target.lastIndexOf(path.sep))
 
         if (!fs.existsSync(path.dirname(target))) {
             fs.mkdirSync(path.dirname(target), { recursive: true })
