@@ -35,7 +35,7 @@ module.exports = {
         }
     ],
     parseFile(source, targetDirectory, parser) {
-        const filename = source.split("\\").slice(-1).pop()
+        const filename = source.split(path.sep).slice(-1).pop()
         const parsed = parser(fs.readFileSync(source, "utf-8"))
         fs.writeFileSync(path.join(targetDirectory, filename.replace(/\.[^\.]+$/, "." + parsed.fileType)), parsed.fileContents, "utf-8")
         directoryUtils.moveFiles(parsed.additionalFiles, targetDirectory)
