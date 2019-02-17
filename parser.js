@@ -14,19 +14,26 @@ module.exports = {
                 let md = metaMarked(fileContents)
                 let template = null
                 let data = {}
-                if (md.meta) {
-                    template = Template.loadTemplate((md.meta.template ? md.meta.template : 'default'))
+
+                if (md.meta && md.meta.template) {
+                    template = Template.loadTemplate(md.meta.template)
                     data = md.meta
                 }
-                else {
-                    template = Template.loadTemplate("default")
-                    data = {}
-                }
+
                 data.content = md.html.trim()
-                return {
-                    fileType: "html",
-                    fileContents: Template.computeTemplate(template.template, data),
-                    additionalFiles: template.additionalFiles
+                
+                if (template) {
+                    return {
+                        fileType: "html",
+                        fileContents: Template.computeTemplate(template.template, data),
+                        additionalFiles: template.additionalFiles
+                    }
+                }
+                else {
+                    return {
+                        fileType: "html",
+                        fileContents: data.content
+                    }
                 }
             },
             activator(file) {
@@ -38,6 +45,6 @@ module.exports = {
         const filename = source.split(path.sep).slice(-1).pop()
         const parsed = parser(fs.readFileSync(source, "utf-8"))
         fs.writeFileSync(path.join(targetDirectory, filename.replace(/\.[^\.]+$/, "." + parsed.fileType)), parsed.fileContents, "utf-8")
-        directoryUtils.moveFiles(parsed.additionalFiles, targetDirectory)
+        if (parsed.additionalFiles) directoryUtils.moveFiles(parsed.additionalFiles, targetDirectory);
     }
 }
